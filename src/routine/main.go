@@ -7,7 +7,7 @@ import (
 
 func main() {
 	FeedTextChanel()
-	FeedBufferChanel()
+	// FeedBufferChanel()
 
 	ch := make(chan int, 2)
 	go Tricker(ch, 2*time.Second)
