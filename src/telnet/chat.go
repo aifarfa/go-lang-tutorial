@@ -33,7 +33,7 @@ func (list *Chat) Remove(conn net.Conn) {
 func (list *Chat) Boardcast(msg string) {
 	list.busy <- true
 	for conn, _ := range list.connections {
-		fmt.Fprintf(conn, "%s\n", msg)
+		fmt.Fprintln(conn, "%s\n", msg)
 	}
 	<-list.busy
 }
@@ -42,7 +42,7 @@ func (list *Chat) Send(user, msg string) {
 	list.busy <- true
 	for conn, name := range list.connections {
 		if user != name {
-			fmt.Fprintf(conn, "%s say: %s\n", user, msg)
+			fmt.Fprintln(conn, "%s say: %s\n", user, msg)
 		}
 	}
 	<-list.busy
